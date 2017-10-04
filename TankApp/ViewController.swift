@@ -8,13 +8,13 @@
 
 
 import UIKit
+import TB
 
 class ViewController: UITableViewController {
     @IBOutlet weak var tankstellenName: UILabel!
     @IBOutlet weak var tankstellenOrt: UILabel!
 
     @IBOutlet weak var preisDiesel: UILabel!
-    @IBOutlet weak var preisSuperPlus: UILabel!
     @IBOutlet weak var preisSuperE10: UILabel!
     @IBOutlet weak var preisSuper: UILabel!
     @IBOutlet weak var verbrauchDurschittLiter: UITextField!
@@ -28,6 +28,8 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        apiCall()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -37,7 +39,6 @@ class ViewController: UITableViewController {
 
     }
     @IBAction func berechneVerbrauch(_ sender: Any) {
-
         if spritPreis == 0.0 {
             let alert = UIAlertController(title: "Spritauswahl fehlt", message: "Bitte wähle eine Spritart aus um den Preis zu errechnen", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
@@ -48,9 +49,7 @@ class ViewController: UITableViewController {
             verbrauchKosten.text = String(Double(verbrauchSprit.text!)!*spritPreis)
         }
     }
-
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-
         if indexPath.section == 0{
             return nil
         }
@@ -58,11 +57,10 @@ class ViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: indexPath) {
                 spritPreis = Double(cell.detailTextLabel?.text! ?? "0.0")!
             }
-            if indexPath.row == 4{
+            if indexPath.row == 3{
                 if eingabePreis.text == "" {
                     spritPreis = 0.0
-                }
-                else{
+                }else{
                     spritPreis = Double(eingabePreis.text!)!
                 }
             }
@@ -71,10 +69,7 @@ class ViewController: UITableViewController {
         if indexPath.section == 2{
             return nil
         }
-        
         return nil
     }
-    
-    
 }
 
