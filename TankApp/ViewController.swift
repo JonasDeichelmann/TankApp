@@ -25,12 +25,18 @@ class ViewController: UITableViewController {
     @IBOutlet weak var verbrauchSprit: UILabel!
     @IBOutlet weak var eingabePreis: UITextField!
     var  spritPreis = 0.0
+    var nextStation = GasStation()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        apiCall()
-        // Do any additional setup after loading the view, typically from a nib.
+        nextStation = apiCall()
+        TB.info("Data from the Gasstation: \(nextStation)")
+        tankstellenName.text =  nextStation.brand + nextStation.name
+        tankstellenOrt.text = nextStation.location.place + "," + nextStation.location.street
+        preisSuper.text = String(nextStation.gas.e5)
+        preisDiesel.text = String(nextStation.gas.diesel)
+        preisSuperE10.text = String(nextStation.gas.e10)
     }
 
     override func didReceiveMemoryWarning() {

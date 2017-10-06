@@ -37,7 +37,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wl-T7-9Gy">
-                                                    <rect key="frame" x="214" y="11" width="142" height="21"/>
+                                                    <rect key="frame" x="98" y="11" width="258" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -61,7 +61,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyD-YD-pXz">
-                                                    <rect key="frame" x="214" y="11" width="142" height="21"/>
+                                                    <rect key="frame" x="101" y="11" width="255" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -292,7 +292,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYh-Gc-l3Y">
-                                                    <rect key="frame" x="301" y="6" width="66" height="30"/>
+                                                    <rect key="frame" x="263" y="6" width="104" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Berechne"/>
                                                     <connections>
@@ -312,7 +312,9 @@
                     </tableView>
                     <connections>
                         <outlet property="eingabePreis" destination="Cel-dH-Vc4" id="XU2-hF-xGg"/>
+                        <outlet property="preisDiesel" destination="HfZ-Ld-z5f" id="pfp-Ly-6ww"/>
                         <outlet property="preisSuper" destination="ii5-B4-XqX" id="0Zr-rF-b8v"/>
+                        <outlet property="preisSuperE10" destination="xLh-0q-Cla" id="yS7-sW-OGc"/>
                         <outlet property="tankstellenName" destination="5wl-T7-9Gy" id="bk1-2L-UgE"/>
                         <outlet property="tankstellenOrt" destination="fyD-YD-pXz" id="7Yc-dq-nEh"/>
                         <outlet property="verbrauchDurschittLiter" destination="l7b-oV-Gf7" id="hLo-rv-6xF"/>

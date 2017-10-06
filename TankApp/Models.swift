@@ -9,7 +9,7 @@
 import Foundation
 
 
-class GasStation {
+struct GasStation {
     var name = ""
     var brand = ""
     var gas = Gas()

@@ -15,7 +15,7 @@ import TB
 
 let config = URLSessionConfiguration.default // Session Configuration
 let session = URLSession(configuration: config) // Load configuration into Session
-
+let myGroup = DispatchGroup()
 
 let base = "https://creativecommons.tankerkoenig.de"
 let path = "/json/list.php?"
@@ -27,6 +27,7 @@ var type = "all"
 let values = "lat=" + lat+"&lng="+lng + "&rad=" + rad + "&sort=" + sort + "&type="  + type
 let key = APIKeys.shared.key
 let url = URL(string: base + path + values + "&apikey=" + key)!
+var nextStation = GasStation()
 
 let task = session.dataTask(with: url, completionHandler: {
     (data, response, error) in
@@ -73,6 +74,7 @@ let task = session.dataTask(with: url, completionHandler: {
                     }
                     i = i + 1
                 }
+                nextStation = station[0]
             }
             } catch {
                 TB.error("Error deserializing JSON: \(error)")
@@ -80,11 +82,17 @@ let task = session.dataTask(with: url, completionHandler: {
         }
 
 })
-func apiCall(){
+func apiCall() -> GasStation{
     task.resume()
+    var temp = 1
+    while task.state != .completed {
+        if temp == 6{
+            TB.warn("Didn't wait for the end of the API Call, because of a timeout")
+            break
+        }
+        usleep(500000)
+        temp += 1
+    }
+    return nextStation
 }
-func convertToDictionary(from text: String) throws -> [String: String] {
-    guard let data = text.data(using: .utf8) else { return [:] }
-    let anyResult: Any = try JSONSerialization.jsonObject(with: data, options: [])
-    return anyResult as? [String: String] ?? [:]
-}
+
