@@ -28,43 +28,52 @@ let values = "lat=" + lat+"&lng="+lng + "&rad=" + rad + "&sort=" + sort + "&type
 let key = APIKeys.shared.key
 let url = URL(string: base + path + values + "&apikey=" + key)!
 
-struct Swifter: Decodable {
-    let brand: String
-    let diesel: String
-    let dist: String
-    let e10: String
-    let e5: String
-    let houseNumber: Int
-    let id: String
-    let isOpen: Int
-    let lat: String
-    let lng: String
-    let name: String
-    let place: String
-    let postCode: Int
-    let street: String
-}
-
-
 let task = session.dataTask(with: url, completionHandler: {
     (data, response, error) in
     if error != nil {
         TB.error(error!.localizedDescription)
     } else {
-            var names = [String]()
-            do {
-                if let data = data,
-                    let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                    let blogs = json["stations"] as? [[String: Any]] {
-                    for blog in blogs {
-                        if let name = blog["name"] as? String {
-                            names.append(name)
-                        }
-                        if let name = blog["name"] as? String {
-                            names.append(name)
-                        }
+
+        do {
+            if let data = data,
+                let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                let blogs = json["stations"] as? [[String: Any]] {
+                var i = 0
+                var station = [GasStation](repeating: GasStation(), count: (blogs.count))
+                for blog in blogs {
+                    if let name = blog["name"] as? String {
+                        station[i].name = name
                     }
+                    if let brand = blog["brand"] as? String {
+                        station[i].brand  = brand
+                    }
+                    if let diesel = blog["diesel"] as? Double {
+                        station[i].gas.diesel  = diesel
+                    }
+                    if let e10 = blog["e10"] as? Double {
+                        station[i].gas.e10  = e10
+                    }
+                    if let e5 = blog["e5"] as? Double {
+                        station[i].gas.e5  = e5
+                    }
+                    if let place = blog["place"] as? String {
+                        station[i].location.place  = place
+                    }
+                    if let postode = blog["postode"] as? String {
+                        station[i].location.postode  = postode
+                    }
+                    if let street = blog["street"] as? String {
+                        station[i].location.street  = street
+                    }
+                    if let latitude = blog["latitude"] as? Double {
+                        station[i].coordinates.latitude  = latitude
+                    }
+                    if let longitude = blog["longitude"] as? Double {
+                        station[i].coordinates.longitude  = longitude
+                    }
+                    i = i + 1
                 }
+            }
             } catch {
                 TB.error("Error deserializing JSON: \(error)")
             }

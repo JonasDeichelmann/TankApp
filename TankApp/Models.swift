@@ -7,10 +7,26 @@
 //
 
 import Foundation
-struct GasStation {
-    let name: String
-    let brand: String
-    let gas: (diesel: Double, e10: Double, e5: Double)
-    let location: (place: String, postode: String, street: String)
-    let coordinates: (latitude: Double, longitude: Double)
+
+
+class GasStation {
+    var name = ""
+    var brand = ""
+    var gas = Gas()
+    var location = Location()
+    var coordinates = Coordinates()
+}
+struct Gas {
+    var diesel = 0.0
+    var e10 = 0.0
+    var e5 = 0.0
+}
+struct Location {
+    var place = ""
+    var postode = ""
+    var street = ""
+}
+struct Coordinates {
+    var latitude = 0.0
+    var longitude = 0.0
 }
