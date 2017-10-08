@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct GasStation {
     var name = ""
     var brand = ""
@@ -16,14 +15,5 @@ struct GasStation {
     var location = Location()
     var coordinates = Coordinates()
 }
-struct Gas {
-    var diesel = 0.0
-    var e10 = 0.0
-    var e5 = 0.0
-}
-struct Location {
-    var place = ""
-    var postode = ""
-    var street = ""
-}
+
 

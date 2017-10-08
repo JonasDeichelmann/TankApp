@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0921C51F89DF37009CF6D6 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0921C41F89DF37009CF6D6 /* InfoViewController.swift */; };
 		DD21AF2A1F89C49A008F1E2F /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21AF291F89C49A008F1E2F /* Coordinates.swift */; };
 		DD21AF2C1F89C5B4008F1E2F /* UserCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21AF2B1F89C5B4008F1E2F /* UserCoordinates.swift */; };
+		DD21AF2F1F89CEA2008F1E2F /* Gas.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21AF2E1F89CEA2008F1E2F /* Gas.swift */; };
+		DD21AF311F89CEB2008F1E2F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21AF301F89CEB2008F1E2F /* Location.swift */; };
+		DD21AF341F89DBDA008F1E2F /* RouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD21AF331F89DBDA008F1E2F /* RouteViewController.swift */; };
 		DD2819751F84219200E74D76 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2819741F84219200E74D76 /* APIKeys.swift */; };
 		DD28197A1F842EFA00E74D76 /* GasStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2819791F842EFA00E74D76 /* GasStation.swift */; };
 		DD3B925C1F23357C009794E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3B925B1F23357C009794E8 /* AppDelegate.swift */; };
@@ -25,8 +29,12 @@
 		0A203B6637B1D6C713A8B0F4 /* Pods-TankApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TankApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TankApp/Pods-TankApp.release.xcconfig"; sourceTree = "<group>"; };
 		89050B7A5FF780F324F733F8 /* Pods_TankApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TankApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45AEF5961CD4A13CA876847 /* Pods-TankApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TankApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TankApp/Pods-TankApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DD0921C41F89DF37009CF6D6 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		DD21AF291F89C49A008F1E2F /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
 		DD21AF2B1F89C5B4008F1E2F /* UserCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinates.swift; sourceTree = "<group>"; };
+		DD21AF2E1F89CEA2008F1E2F /* Gas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gas.swift; sourceTree = "<group>"; };
+		DD21AF301F89CEB2008F1E2F /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		DD21AF331F89DBDA008F1E2F /* RouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		DD2819741F84219200E74D76 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DD2819791F842EFA00E74D76 /* GasStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStation.swift; sourceTree = "<group>"; };
 		DD3B92581F23357C009794E8 /* TankApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +79,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD21AF2D1F89CE8B008F1E2F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD2819791F842EFA00E74D76 /* GasStation.swift */,
+				DD21AF2E1F89CEA2008F1E2F /* Gas.swift */,
+				DD21AF291F89C49A008F1E2F /* Coordinates.swift */,
+				DD21AF301F89CEB2008F1E2F /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DD2819761F84226500E74D76 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +122,13 @@
 			children = (
 				DD3B925B1F23357C009794E8 /* AppDelegate.swift */,
 				DD3B925D1F23357C009794E8 /* ViewController.swift */,
+				DD21AF331F89DBDA008F1E2F /* RouteViewController.swift */,
+				DD0921C41F89DF37009CF6D6 /* InfoViewController.swift */,
 				DD3B925F1F23357C009794E8 /* Main.storyboard */,
 				DD3B92621F23357C009794E8 /* Assets.xcassets */,
 				DD3B92641F23357C009794E8 /* LaunchScreen.storyboard */,
 				DD3B92671F23357C009794E8 /* Info.plist */,
-				DD2819791F842EFA00E74D76 /* GasStation.swift */,
-				DD21AF291F89C49A008F1E2F /* Coordinates.swift */,
+				DD21AF2D1F89CE8B008F1E2F /* Models */,
 				DD21AF2B1F89C5B4008F1E2F /* UserCoordinates.swift */,
 				DD2819761F84226500E74D76 /* API */,
 			);
@@ -247,12 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD3B925E1F23357C009794E8 /* ViewController.swift in Sources */,
+				DD0921C51F89DF37009CF6D6 /* InfoViewController.swift in Sources */,
 				DDD7B5AF1F2623F700172DEA /* API.swift in Sources */,
 				DD21AF2C1F89C5B4008F1E2F /* UserCoordinates.swift in Sources */,
 				DD2819751F84219200E74D76 /* APIKeys.swift in Sources */,
+				DD21AF311F89CEB2008F1E2F /* Location.swift in Sources */,
 				DD3B925C1F23357C009794E8 /* AppDelegate.swift in Sources */,
 				DD21AF2A1F89C49A008F1E2F /* Coordinates.swift in Sources */,
 				DD28197A1F842EFA00E74D76 /* GasStation.swift in Sources */,
+				DD21AF341F89DBDA008F1E2F /* RouteViewController.swift in Sources */,
+				DD21AF2F1F89CEA2008F1E2F /* Gas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

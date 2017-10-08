@@ -73,8 +73,13 @@ let task = session.dataTask(with: url, completionHandler: {
                     }
                     i = i + 1
                 }
-                nextStation = station[0]
-                TB.info("stations: \(station)")
+                if station.count != 0 {
+                    nextStation = station[0]
+                    TB.info("stations: \(station)")
+                }else{
+                    TB.error("No gasstation in range")
+                }
+                
             }
             } catch {
                 TB.error("Error deserializing JSON: \(error)")

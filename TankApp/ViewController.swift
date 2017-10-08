@@ -40,6 +40,7 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        
         if (CLLocationManager.locationServicesEnabled())
         {
             locationManager.delegate = self
@@ -57,12 +58,11 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
             TB.warn("CLLocationManager Service is not Enable")
         }
         
-        
-
+        navigationController?.navigationBar.topItem?.title = "Caluclator"
 
         nextStation = apiCall()
         TB.info("Data from the Gasstation: \(nextStation)")
-        tankstellenName.text =  nextStation.brand + nextStation.name
+        tankstellenName.text =  nextStation.brand + ": " + nextStation.name
         tankstellenOrt.text = nextStation.location.place + "," + nextStation.location.street
         preisSuper.text = String(nextStation.gas.e5)
         preisDiesel.text = String(nextStation.gas.diesel)
