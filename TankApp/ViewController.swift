@@ -9,8 +9,12 @@
 
 import UIKit
 import TB
+import MapKit
+import CoreLocation
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, CLLocationManagerDelegate {
+
+    // - MARK: Defining Var
     @IBOutlet weak var tankstellenName: UILabel!
     @IBOutlet weak var tankstellenOrt: UILabel!
 
@@ -27,9 +31,35 @@ class ViewController: UITableViewController {
     var  spritPreis = 0.0
     var nextStation = GasStation()
 
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+
+    // - MARK: viewDidLoad
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()            
+            locationManager.startUpdatingLocation()
+            let loc = locationManager.location 
+            let lat = (loc?.coordinate.latitude)!
+            let long = (loc?.coordinate.longitude)!
+            UserCoordinates.shared.coordinateLat = lat
+            UserCoordinates.shared.coordinateLong = long
+        }
+        else
+        {
+            TB.warn("CLLocationManager Service is not Enable")
+        }
+        
+        
+
+
         nextStation = apiCall()
         TB.info("Data from the Gasstation: \(nextStation)")
         tankstellenName.text =  nextStation.brand + nextStation.name
@@ -37,6 +67,8 @@ class ViewController: UITableViewController {
         preisSuper.text = String(nextStation.gas.e5)
         preisDiesel.text = String(nextStation.gas.diesel)
         preisSuperE10.text = String(nextStation.gas.e10)
+
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +87,9 @@ class ViewController: UITableViewController {
             verbrauchKosten.text = String(Double(verbrauchSprit.text!)!*spritPreis)
         }
     }
+
+    // - MARK: Table View Function
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if indexPath.section == 0{
             return nil
@@ -77,5 +112,6 @@ class ViewController: UITableViewController {
         }
         return nil
     }
+   
 }
 

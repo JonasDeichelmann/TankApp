@@ -19,9 +19,9 @@ let myGroup = DispatchGroup()
 
 let base = "https://creativecommons.tankerkoenig.de"
 let path = "/json/list.php?"
-var lat = "52.521"
-var lng = "13.438"
-var rad = "1.5"
+var lat = String(UserCoordinates.shared.lat)
+var lng = String(UserCoordinates.shared.long)
+var rad = "10"
 var sort = "dist"
 var type = "all"
 let values = "lat=" + lat+"&lng="+lng + "&rad=" + rad + "&sort=" + sort + "&type="  + type
@@ -34,7 +34,6 @@ let task = session.dataTask(with: url, completionHandler: {
     if error != nil {
         TB.error(error!.localizedDescription)
     } else {
-
         do {
             if let data = data,
                 let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
@@ -75,6 +74,7 @@ let task = session.dataTask(with: url, completionHandler: {
                     i = i + 1
                 }
                 nextStation = station[0]
+                TB.info("stations: \(station)")
             }
             } catch {
                 TB.error("Error deserializing JSON: \(error)")
