@@ -47,9 +47,11 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.requestWhenInUseAuthorization()            
             locationManager.startUpdatingLocation()
-            let loc = locationManager.location 
-            let lat = (loc?.coordinate.latitude)!
-            let long = (loc?.coordinate.longitude)!
+//            let loc = locationManager.location
+//            let lat = (loc?.coordinate.latitude)!
+//            let long = (loc?.coordinate.longitude)!
+            var lat = 49.632649
+            var long = 8.343993
             UserCoordinates.shared.coordinateLat = lat
             UserCoordinates.shared.coordinateLong = long
         }

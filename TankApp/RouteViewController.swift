@@ -17,6 +17,7 @@ class RouteViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         navigationController?.title = "Route"
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
