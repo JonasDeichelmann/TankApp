@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Calculator-->
         <scene sceneID="lhw-83-xyi">
             <objects>
                 <tableViewController id="zES-Fa-MC6" customClass="ViewController" customModule="TankApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,7 +311,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Calculator" image="Icon" landscapeImage="Icon" largeContentSizeImage="Icon" springLoaded="YES" id="mGt-jJ-MOA"/>
-                    <navigationItem key="navigationItem" title="Title" id="J5H-Nn-MPi"/>
+                    <navigationItem key="navigationItem" id="J5H-Nn-MPi">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="reply" id="b6H-fE-51v"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="eingabePreis" destination="Cel-dH-Vc4" id="XU2-hF-xGg"/>
                         <outlet property="preisDiesel" destination="HfZ-Ld-z5f" id="pfp-Ly-6ww"/>

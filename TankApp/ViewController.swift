@@ -29,46 +29,24 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     @IBOutlet weak var verbrauchSprit: UILabel!
     @IBOutlet weak var eingabePreis: UITextField!
     var  spritPreis = 0.0
-    var nextStation = GasStation()
+//    var nextStation = GasStation()
 
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation!
 
     // - MARK: viewDidLoad
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()            
-            locationManager.startUpdatingLocation()
-//            let loc = locationManager.location
-//            let lat = (loc?.coordinate.latitude)!
-//            let long = (loc?.coordinate.longitude)!
-            var lat = 49.632649
-            var long = 8.343993
-            UserCoordinates.shared.coordinateLat = lat
-            UserCoordinates.shared.coordinateLong = long
-        }
-        else
-        {
-            TB.warn("CLLocationManager Service is not Enable")
-        }
-        
-        navigationController?.navigationBar.topItem?.title = "Caluclator"
+        navigationController?.navigationBar.topItem?.title = "Caluclator!"
 
-        nextStation = apiCall()
-        TB.info("Data from the Gasstation: \(nextStation)")
-        tankstellenName.text =  nextStation.brand + ": " + nextStation.name
-        tankstellenOrt.text = nextStation.location.place + "," + nextStation.location.street
-        preisSuper.text = String(nextStation.gas.e5)
-        preisDiesel.text = String(nextStation.gas.diesel)
-        preisSuperE10.text = String(nextStation.gas.e10)
+        // TODO:
+        updateGasstation()
 
 
     }
@@ -114,6 +92,51 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
         }
         return nil
     }
-   
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            TB.info("If status has not yet been determied, ask for authorization")
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .authorizedWhenInUse:
+            TB.info("If authorized when in use")
+            locationManager.startUpdatingLocation()
+            let loc = locationManager.location
+            let lat = (loc?.coordinate.latitude)!
+            let long = (loc?.coordinate.longitude)!
+            UserCoordinates.shared.coordinateLat = lat
+            UserCoordinates.shared.coordinateLong = long
+            updateGasstation()
+            break
+        case .authorizedAlways:
+            TB.info("If always authorized")
+
+            updateGasstation()
+            break
+        case .restricted:
+            TB.info("If restricted by e.g. parental controls. User can't enable Location Services")
+            break
+        case .denied:
+            TB.info("If user denied your app access to Location Services, but can grant access from Settings.app")
+            break
+        }
+    }
+
+    @objc func updateGasstation(){
+        locationManager.startUpdatingLocation()
+        let loc = locationManager.location
+        let lat = (loc?.coordinate.latitude)!
+        let long = (loc?.coordinate.longitude)!
+
+        UserCoordinates.shared.coordinateLat = lat
+        UserCoordinates.shared.coordinateLong = long
+        nextStation = apiCall()
+        TB.info("Data from the Gasstation: \(nextStation)")
+        tankstellenName.text =  nextStation.brand + ": " + nextStation.name
+        tankstellenOrt.text = nextStation.location.place + "," + nextStation.location.street
+        preisSuper.text = String(nextStation.gas.e5)
+        preisDiesel.text = String(nextStation.gas.diesel)
+        preisSuperE10.text = String(nextStation.gas.e10)
+    }
 }
 

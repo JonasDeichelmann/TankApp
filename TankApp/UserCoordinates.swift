@@ -28,12 +28,11 @@ class UserCoordinates: NSObject, CLLocationManagerDelegate {
 
     
     // MARK: - Properties
-    
-    // Coordinates from the HS-Worms
-    var lat = 49.632649
-    var long = 8.343993
-    
-    
+  
+
+    var lat = 0.0
+    var long = 0.0
+
     var coordinateLat : Double
     {
         get {

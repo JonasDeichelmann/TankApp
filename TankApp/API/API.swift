@@ -75,7 +75,6 @@ let task = session.dataTask(with: url, completionHandler: {
                 }
                 if station.count != 0 {
                     nextStation = station[0]
-                    TB.info("stations: \(station)")
                 }else{
                     TB.error("No gasstation in range")
                 }
