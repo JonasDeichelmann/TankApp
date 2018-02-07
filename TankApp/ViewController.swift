@@ -39,14 +39,14 @@ class ViewController: UITableViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestWhenInUseAuthorization()
         
         navigationController?.navigationBar.topItem?.title = "Caluclator!"
 
         // TODO:
-        updateGasstation()
+//        updateGasstation()
 
 
     }
